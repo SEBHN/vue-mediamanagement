@@ -10,6 +10,10 @@
         <ul>
             <button v-on:click="getAllMediaForUser('999')">Get all Media</button>
         </ul>
+        <ul>
+            <button v-on:click="getMediaWithId('999', '3a5802f1-96f7-4168-9558-cfd549f4d51a')">Get Media with ID
+            </button>
+        </ul>
         <br>
         <p> Response </p>
         <p>{{ resp }} </p>
@@ -25,13 +29,45 @@
         @Prop() private msg!: string;
         @Prop() private resp!: string;
 
+        // get all medias for user with userId
         private getAllMediaForUser(userId: string): void {
             //users/{userId}/media
-            axios.get("http://localhost:8080/users/"+ userId + "/media/", { headers: {
-                    'Access-Control-Allow-Origin': '*',
-                }})
-                .then(response => { this.resp = response.data })
+            axios.get("http://localhost:8080/users/" + userId + "/media/", {
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                }
+            })
+                .then(response => {
+                    this.resp = response.data;
+                    this.getFolders(this.resp);
+                })
                 .catch(e => console.log(e.toString()));
+        }
+
+        // gets a media with id
+        private getMediaWithId(userId: string, mediaId: string): void {
+            //users/{userId}/media/{id}
+            axios.get("http://localhost:8080/users/" + userId + "/media/" + mediaId, {
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                }
+            })
+                .then(response => {
+                    this.resp = response.data;
+                })
+                .catch(e => console.log(e.toString()));
+        }
+
+        // this method stores all subfolders into subfolders array
+        private getFolders(jsonArray: string): void {
+            let array: string[] = JSON.parse(JSON.stringify(jsonArray));
+            let subfolders = [];
+
+            for(let entry of array){
+                if(entry["filePath"] != "" && entry["filePath"] != "/"){
+                    subfolders.push(entry);
+                }
+            }
         }
     }
 </script>
