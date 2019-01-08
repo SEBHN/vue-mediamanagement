@@ -1,5 +1,7 @@
 <template>
+<v-app>
   <app-header></app-header>
+</v-app>
 </template>
 
 <script>
