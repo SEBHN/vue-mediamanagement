@@ -16,7 +16,7 @@
       <v-btn icon class="mx-4">
         <v-icon>create_new_folder</v-icon>
       </v-btn>
-      <v-btn flat class="mx-4">
+      <v-btn @click="hallo()" flat class="mx-4">
         <v-icon class="mr-2">cloud_upload</v-icon>
         Upload
       </v-btn>
@@ -28,7 +28,11 @@
 
 <script>
 export default {
-
+  methods:{
+    hallo(){
+      console.log("HALLO");
+    }
+  }
 }
 </script>
 
