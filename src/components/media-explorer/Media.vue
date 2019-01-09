@@ -6,14 +6,11 @@
 export default {
   data: function () {
     return {
-      id,
-      name,
-      isFolder,
-      filepath,
-      tags = [],
-      fileId,
-      fileExtension
     }
+  },
+  props: {
+    media: { id, name, isFolder, filepath, tags, fileId, fileExtension },
+    type: Array
   },
   methods: {
       addTag(tag) {
@@ -22,7 +19,7 @@ export default {
       removeTag(tag) {
         throw new Error('Not yet implemented');
       }
-    }
+  }
 }
 </script>
 

@@ -6,6 +6,7 @@
 
 <script>
 import Header from './components/layout/Header.vue'
+import eventBus from './event_bus/event_bus.js'
 
 export default {
   components: {
