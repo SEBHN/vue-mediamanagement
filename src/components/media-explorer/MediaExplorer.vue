@@ -5,9 +5,16 @@
         <v-flex v-for="file in mediaFiles" :key="file.id" md3 xs12 class="my-4">
           <app-media
               :name="file.name"
+              :isFolder="file.isFolder"
           ></app-media>
         </v-flex>
       </v-layout>
+      <v-progress-circular
+      :size="70"
+      :width="7"
+      color="purple"
+      indeterminate
+    ></v-progress-circular>
     </v-container>
   </div>
 </template>
@@ -35,6 +42,8 @@ export default {
     this.eventBus.$on('mediaAdded', (allMedia) => {
       
     });
+
+
   },
   beforeMount() {
     this.mediaFiles = this.eventBus.getAllForPath(this.eventBus.path);

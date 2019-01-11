@@ -12,10 +12,11 @@
           label="Search tags..."
           hide-details
           color="black"/>
-
+      <!-- Create new folder button -->
       <v-btn icon class="mx-4">
         <v-icon>create_new_folder</v-icon>
       </v-btn>
+      <!-- Upload button -->
       <v-btn flat class="mx-4">
         <v-icon class="mr-2">cloud_upload</v-icon>
         Upload
