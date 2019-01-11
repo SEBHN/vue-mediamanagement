@@ -2,8 +2,10 @@
   <div>
     <v-container fluid>
       <v-layout row wrap>
-        <v-flex v-for="file in mediaFiles" :key="file.id" xs4>
-          <app-media></app-media>
+        <v-flex v-for="file in mediaFiles" :key="file.id" md3 xs12 class="my-4">
+          <app-media
+              :name="file.name"
+          ></app-media>
         </v-flex>
       </v-layout>
     </v-container>

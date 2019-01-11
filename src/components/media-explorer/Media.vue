@@ -1,7 +1,10 @@
 <template>
- <v-btn icon large>
-   <v-icon large>insert_drive_file</v-icon>
- </v-btn>
+<div class="text-xs-center">
+  <v-btn icon>
+    <v-icon large>insert_drive_file</v-icon>
+  </v-btn>
+  <p class="body-1">{{ name }}</p>
+ </div>
 </template>
 
 <script>
@@ -10,10 +13,9 @@ export default {
     return {
     }
   },
-  // props: {
-  //   media: { id, name, isFolder, filePath, tags, fileId, fileExtension },
-  //   type: Array
-  // },
+  props: {
+    name: String
+  },
   methods: {
       addTag(tag) {
         this.tags.push(tag);
