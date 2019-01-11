@@ -1,4 +1,4 @@
-export const mediaDao = [
+const mediaDao = [
     {id: '787793fa', name: 'car', isFolder: false, filePath: '/', tags: [], fileId: '123i', fileExtension: 'jpeg'},
     {id: '181bea6f', name: 'file', isFolder: false, filePath: '/', tags: [], fileId: 'alsk', fileExtension: 'exe'},
     {id: 'ui1388ah', name: 'Johanna', isFolder: false, filePath: '/', tags: [], fileId: '213s', fileExtension: 'exe'},
@@ -12,3 +12,5 @@ export const mediaDao = [
     {id: 'juh92pxa', name: 'THI', isFolder: true, filePath: '/', tags: [], fileId: 'tell'},
     {id: 'öp09iknf', name: 'folder1', isFolder: true, filePath: '/', tags: [], fileId: 'tuz7'}
 ];
+
+module.exports = mediaDao;

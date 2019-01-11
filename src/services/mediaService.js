@@ -1,6 +1,6 @@
-import { mediaDao } from '../dao/mediaDao'
+const mediaDao = require('../dao/mediaDao');
 
-export const mediaService = {
+const mediaService = {
   mediaDao: mediaDao,
   add: function(media) {
     this.mediaDao.push(media);
@@ -22,3 +22,5 @@ export const mediaService = {
     this.mediaFiles.remove(media);
   }
 }
+
+module.exports = mediaService;
