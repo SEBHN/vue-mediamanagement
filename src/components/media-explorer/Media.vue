@@ -1,6 +1,6 @@
 <template>
- <v-btn icon>
-   <v-icon>insert_drive_file</v-icon>
+ <v-btn icon large>
+   <v-icon large>insert_drive_file</v-icon>
  </v-btn>
 </template>
 
@@ -11,7 +11,7 @@ export default {
     }
   },
   // props: {
-  //   media: { id, name, isFolder, filepath, tags, fileId, fileExtension },
+  //   media: { id, name, isFolder, filePath, tags, fileId, fileExtension },
   //   type: Array
   // },
   methods: {
