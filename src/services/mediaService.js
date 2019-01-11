@@ -11,6 +11,9 @@ export const mediaService = {
   getAll: function() {
     return this.mediaDao.slice();
   },
+  getAllForPath(path) {
+    return this.mediaDao.find(media => media.filePath === path);
+  },
   remove: function(id) {
     const media = this.mediaFiles.find(media => media.id === id);
     this.mediaFiles.remove(media);
