@@ -5,14 +5,14 @@
     <v-btn icon class="zoom">
       <v-icon color="blue darken-2" large>folder</v-icon>
     </v-btn>
-    <p class="body-1">{{ name }}</p>
+    <p class="subheading font-weight-light">{{ name }}</p>
   </div>
   <!-- Else: media is a file -->
   <div class="text-xs-center" v-else>
     <v-btn icon class="zoom">
       <v-icon color="amber darken-1" large>insert_drive_file</v-icon>
     </v-btn>
-    <p class="body-1">{{ name }}</p>
+    <p class="subheading font-weight-light">{{ name }}</p>
   </div>
   <span v-if="hover">Hovered!</span>
 </div>
