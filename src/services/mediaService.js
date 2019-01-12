@@ -1,8 +1,23 @@
+const uuidv4 = require('uuid/v4');
 const mediaDao = require('../dao/mediaDao');
 
 const mediaService = {
   addOne: function(media) {
-    mediaDao.push(media);
+    // incoming folder
+    if (media.id == null) {
+      // check by name if folder is in memory
+      const match = this.getAll().find(element => element.name === media.name);
+      if (typeof match === 'undefined') {
+        // folder doesn't exist in memory
+        media.id = uuidv4(); // generate random uuid
+        media.isFolder = true;
+        mediaDao.push(media);
+      } // if folder is in memory - do nothing
+    } else {
+      // handle media files
+      mediaDao.push(media);
+    }
+
   },
   addMany: function(files) {
     if (Array.isArray(files)) {

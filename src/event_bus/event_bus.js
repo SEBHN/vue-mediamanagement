@@ -8,7 +8,11 @@ export const eventBus = new Vue({
   },
   methods: {
     add(media) {
-      mediaService.add(media);
+      mediaService.addOne(media);
+      this.emitEvent('mediaAdded');
+    },
+    addMany(files) {
+      mediaService.addMany(files);
       this.emitEvent('mediaAdded');
     },
     update(id, name) {
@@ -27,7 +31,7 @@ export const eventBus = new Vue({
     },
     // event to emit
     emitEvent(event) {
-      this.$emit(event, mediaService.getAllForPath(path));
+      this.$emit(event, mediaService.getAllForPath(this.path));
     }
   }
 });

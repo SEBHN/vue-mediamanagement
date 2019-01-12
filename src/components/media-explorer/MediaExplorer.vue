@@ -9,25 +9,25 @@
           ></app-media>
         </v-flex>
       </v-layout>
-      <v-progress-circular
+      <!-- <v-progress-circular
       :size="70"
       :width="7"
       color="purple"
       indeterminate
-    ></v-progress-circular>
+    ></v-progress-circular> -->
     </v-container>
   </div>
 </template>
 
 <script>
 import Media from './Media.vue'
-import { eventBus } from '../../event_bus/event_bus'
+import { eventBus } from '../../event_bus/event_bus';
+import { api } from '../../services/api';
 
 export default {
 
   data: function () {
     return {
-      eventBus,
       mediaFiles: []
     }
   },
@@ -39,14 +39,12 @@ export default {
   },
   created() {
     // register events
-    this.eventBus.$on('mediaAdded', (allMedia) => {
-      
+    eventBus.$on('mediaAdded', (files) => {
+      this.mediaFiles = files;
     });
-
-
   },
   beforeMount() {
-    this.mediaFiles = this.eventBus.getAllForPath(this.eventBus.path);
+    this.mediaFiles = api.getMediaForPath('999', eventBus.path);
   }
 
 }
