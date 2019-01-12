@@ -1,7 +1,6 @@
-import { http } from '../http/http'
-import { eventBus } from '../event_bus/event_bus'
+const http = require('../http/http');
 
-export default class Api {
+const api = {
   getMediaForPath (currentPath) {
     const encodedCurrentPath = encodeURIComponent(currentPath);
     const requestUrl = `/users/folders/${encodedCurrentPath}/media/`;
@@ -9,3 +8,5 @@ export default class Api {
     return http.get(requestUrl);
   }
 }
+
+module.exports = api;

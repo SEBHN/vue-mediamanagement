@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { mediaService } from '../services/mediaService'
+const mediaService = require('../services/mediaService');
 
 export const eventBus = new Vue({
   data: {

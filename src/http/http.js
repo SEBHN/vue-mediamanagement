@@ -1,8 +1,10 @@
-import axios from 'axios'
+const axios = require('axios');
 
 // REST api : 
 const baseUrl = `https://mvs-18-ws-spring-in-cloud.appspot.com`
 
-export let http = axios.create({
+const http = axios.create({
   baseURL: baseUrl
-})
+});
+
+module.exports = http;

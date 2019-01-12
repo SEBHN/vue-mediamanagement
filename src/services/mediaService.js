@@ -1,25 +1,41 @@
 const mediaDao = require('../dao/mediaDao');
 
 const mediaService = {
-  mediaDao: mediaDao,
-  add: function(media) {
-    this.mediaDao.push(media);
+  addOne: function(media) {
+    mediaDao.push(media);
   },
-  update: function(id, name) {
+  addMany: function(files) {
+    if (Array.isArray(files)) {
+      files.forEach((file) => {
+        this.addOne(file);
+      });
+    } else {
+      throw new Error(`The arg ${files} is not an Array.`);
+    }
+  },
+  rename: function(id, name) {
     this.getMediaForId(id).name = name;
   },
   getAll: function() {
-    return this.mediaDao.slice();
+    return mediaDao;
   },
   getAllForPath(path) {
-    return this.mediaDao.filter(media => media.filePath === path);
+    return mediaDao.filter(media => media.filePath === path);
   },
   getMediaForId(id) {
-    return this.mediaDao.find(media => media.id === id);
+    return mediaDao.find(media => media.id === id);
   },
   remove: function(id) {
-    const media = this.mediaFiles.find(media => media.id === id);
-    this.mediaFiles.remove(media);
+    const media = mediaDao.find(media => media.id === id);
+    const index = mediaDao.indexOf(media);
+    if (index > -1) {
+      mediaDao.splice(index, 1);
+    } else {
+      throw new Error(`Media with id ${id} doesn't exist in mediaDao.`);
+    }
+  },
+  removeAll() {
+    mediaDao.slice(0, mediaDao.length);
   }
 }
 
