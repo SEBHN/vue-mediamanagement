@@ -26,8 +26,9 @@ unit-tests:
 deployment:
   stage: deploy
   image: dxjoke/alpine-git
-  script:
+  before_script:
     - cd dist/
+  script:
     - git config --global user.email "443_3w4md4sjdioa@byom.de"
     - git config --global user.name "MVS Publisher"
     - git init
