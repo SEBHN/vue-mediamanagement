@@ -42,7 +42,7 @@ export const api = new Vue({
       obj.filePath = eventBus.path;
       const requestUrl = `/users/${userId}/media/`;
       http.post(requestUrl, JSON.stringify(obj)).then(res => {
-        this.postMedia(userId, res.data['id'], file)});
+        this.postMedia(userId, res.data.id, file)});
     },
     postMedia(userId, mediaId, file) {
       const formData = new FormData();
