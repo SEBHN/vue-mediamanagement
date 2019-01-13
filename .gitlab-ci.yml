@@ -1,0 +1,42 @@
+image: node:10.15.0-slim
+
+stages:
+  - build
+  - test
+  - deploy
+
+cache:
+  paths:
+    - node_modules/
+
+app-build:
+  stage: build
+  script:
+    - npm install --progress=false
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 10 mins
+
+unit-tests:
+  stage: test
+  script:
+    - npm run test:unit
+
+deployment:
+  stage: deploy
+  image: dxjoke/alpine-git
+  before_script:
+    - cd dist/
+  script:
+    - git config --global user.email "443_3w4md4sjdioa@byom.de"
+    - git config --global user.name "MVS Publisher"
+    - git init
+    - git add -A
+    - git commit -m 'Deploy'
+    - git remote add origin https://mvspublisher:$GH_TOKEN@github.com/SEBHN/mvsvue.git
+    - git push -f origin master:gh-pages
+
+  dependencies:
+    - app-build
