@@ -17,6 +17,7 @@ app-build:
   artifacts:
     paths:
       - dist/
+    expire_in: 10 mins
 
 unit-tests:
   stage: test
