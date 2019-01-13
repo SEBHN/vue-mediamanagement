@@ -1,5 +1,6 @@
 import Vue from 'vue'
 const http = require('../http/http');
+const httpPost = require('../http/http');
 import { eventBus } from '../event_bus/event_bus';
 
 export const api = new Vue({
@@ -35,18 +36,22 @@ export const api = new Vue({
       http.get(requestUrl).then(res => console.log(res.data));
     },
     uploadMetadata(file, userId) {
+      var obj = new Object();
       obj.name = file.name;
       obj.fileExtension = this.getExtension(file);
       obj.filePath = eventBus.path;
       const requestUrl = `/users/${userId}/media/`;
       httpPost.post(requestUrl, JSON.stringify(obj)).then(res => {
-        this.postMedia(userId, res.data['id'], file)});
+        this.postMedia(userId, res.data.id, file)});
     },
     postMedia(userId, mediaId, file) {
       const formData = new FormData();
       formData.append("file", file);
       const requestUrl = `/users/${userId}/media/${mediaId}/upload`;
-      http.post(requestUrl, formData).then(res => console.log(res.data));
+      http.post(requestUrl, formData).then(res => {
+        res.data.isFolder = false;
+        eventBus.add(res.data);
+      });
     },
     getExtension(file) {
       const fileName = file.name;

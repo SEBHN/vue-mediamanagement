@@ -20,7 +20,8 @@
         <!-- Upload button -->
         <v-btn flat class="mx-4">
           <v-icon class="mr-2">cloud_upload</v-icon>
-          Upload
+          <input id="file" style="display: none" type="file" @change="uploadFile($event)">
+          <label for="file">Upload</label>
         </v-btn>
         <v-btn flat class="mx-4">Sign Out</v-btn>
 
@@ -54,10 +55,19 @@
 </template>
 
 <script>
+  import { api } from '../../services/api';
+
 export default {
   data: function() {
     return {
       dialog: false
+    }
+  },
+  methods: {
+    uploadFile(event){
+      var file = event.target.files[0];
+      event.target.value = '';
+      api.uploadMetadata(file, '999');
     }
   }
 }
