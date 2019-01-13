@@ -1,8 +1,9 @@
 import Vue from 'vue'
-const http = require('../http/http');
+import http from '../http/http';
 import { eventBus } from '../event_bus/event_bus';
 
-export const api = new Vue({
+/*eslint no-console: ["error", { allow: ["log"] }] */
+const api = new Vue({
   data: {
     // shared data here
   },
@@ -35,11 +36,12 @@ export const api = new Vue({
       http.get(requestUrl).then(res => console.log(res.data));
     },
     uploadMetadata(file, userId) {
+      let obj = {};
       obj.name = file.name;
       obj.fileExtension = this.getExtension(file);
       obj.filePath = eventBus.path;
       const requestUrl = `/users/${userId}/media/`;
-      httpPost.post(requestUrl, JSON.stringify(obj)).then(res => {
+      http.post(requestUrl, JSON.stringify(obj)).then(res => {
         this.postMedia(userId, res.data['id'], file)});
     },
     postMedia(userId, mediaId, file) {
@@ -51,14 +53,13 @@ export const api = new Vue({
     getExtension(file) {
       const fileName = file.name;
       const countDots = fileName.replace(/[^.]/g, "").length;
-      let extension;
       if (countDots < 1) {
-        return extension = "undefined";
+        return "undefined";
       } else if (countDots === 1) {
-        return extension = "." + fileName.split(".").pop();
+        return "." + fileName.split(".").pop();
       } else {
         const file_name_array = fileName.split(".");
-        return extension = "." + file_name_array[file_name_array.length - 1];
+        return "." + file_name_array[file_name_array.length - 1];
       }
     },
     deleteMedia(userId, mediaId) {
@@ -66,4 +67,6 @@ export const api = new Vue({
       http.delete(requestUrl).then(res => console.log(res.status));
     }
   }
-}) ;
+})
+
+export default api

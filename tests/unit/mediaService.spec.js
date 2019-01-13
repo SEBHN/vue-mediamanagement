@@ -1,6 +1,7 @@
-const mediaService = require('../services/mediaService');
+import mediaService from '../../src/services/mediaService';
 
 let testMedia;
+let testMedia1;
 let testFolder;
 let currentPath;
 

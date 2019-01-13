@@ -1,9 +1,10 @@
 import Vue from 'vue'
-const mediaService = require('../services/mediaService');
+import mediaService from '../services/mediaService';
 
 export const eventBus = new Vue({
   data: {
     // shared data here
+    mediaService,
     path: '/'
   },
   methods: {

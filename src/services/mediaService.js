@@ -1,5 +1,5 @@
-const uuidv4 = require('uuid/v4');
-const mediaDao = require('../dao/mediaDao');
+import uuidv4 from 'uuid/v4';
+import mediaDao from '../dao/mediaDao';
 
 const mediaService = {
   addOne: function(media) {
@@ -54,4 +54,4 @@ const mediaService = {
   }
 }
 
-module.exports = mediaService;
+export default mediaService
