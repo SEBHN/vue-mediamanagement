@@ -22,7 +22,8 @@
 export default {
   data: function () {
     return {
-      hover: false
+      hover: false,
+      tag: String
     }
   },
   props: {

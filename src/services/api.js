@@ -3,7 +3,7 @@ import http from '../http/http';
 import { eventBus } from '../event_bus/event_bus';
 
 /*eslint no-console: ["error", { allow: ["log"] }] */
-const api = new Vue({
+export const api = new Vue({
   data: {
     // shared data here
   },
@@ -68,5 +68,3 @@ const api = new Vue({
     }
   }
 })
-
-export default api
