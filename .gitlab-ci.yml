@@ -40,3 +40,6 @@ deployment:
 
   dependencies:
     - app-build
+  only:
+    - develop
+    - master
