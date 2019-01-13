@@ -8,6 +8,13 @@ export const routes = [
       'appHeader': Header,
       'appMediaExplorer': MediaExplorer
     },
+    beforeEnter: (to, from, next) => {
+      if (true) {
+        next();
+      } else {
+        
+      }
+    }
   },
   {
     path: '',
