@@ -1,42 +1,43 @@
 <template>
-<v-app>
+<div id="app">
   <div v-if="authenticated">
     <router-view name="appHeader"></router-view>
     <br><br><br>
     <router-view class="mx-4" name="appMediaExplorer"></router-view>
   </div>
-  <button v-else @click="$auth.loginRedirect()">Login</button>
-</v-app>
+  <button v-if='authenticated' v-on:click='logout' id='logout-button'> Logout </button>
+  <button v-else v-on:click='$auth.loginRedirect' id='login-button'> Login </button>
+  <router-view/>
+</div>
 </template>
 
 <script>
 import { router } from './main'
 
 export default {
+  name: 'app',
   data: function () {
     return {
       authenticated: false
     }
   },
-  methods: {
-    isAuthenticated: async function() {
-      this.authenticated = await this.$auth.isAuthenticated();
-      console.log(this.authenticated);
-    },
-    logout: async function() {
-      await this.$auth.logout();
-      await this.$auth.isAuthenticated();
-
-      this.$router.push({path: '/'});
-    }
-  },
-  created() {
-    this.isAuthenticated();
+  created () {
+    this.isAuthenticated()
   },
   watch: {
-    '$route' (to, from) {
-      // react to route changes...
-      this.authenticated = this.isAuthenticated();
+    // Everytime the route changes, check for auth status
+    '$route': 'isAuthenticated'
+  },
+  methods: {
+    async isAuthenticated () {
+      this.authenticated = await this.$auth.isAuthenticated()
+    },
+    async logout () {
+      await this.$auth.logout()
+      await this.isAuthenticated()
+
+      // Navigate back to home
+      this.router.push({ path: '/' })
     }
   }
 }
