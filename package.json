@@ -9,6 +9,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "@okta/okta-vue": "^1.0.7",
     "axios": "^0.18.0",
     "jest": "^23.6.0",
     "material-design-icons-iconfont": "^4.0.3",
@@ -17,6 +18,7 @@
     "vuetify": "^1.4.1"
   },
   "devDependencies": {
+    "@types/okta__okta-vue": "^1.0.1",
     "@vue/cli-plugin-babel": "^3.3.0",
     "@vue/cli-plugin-eslint": "^3.3.0",
     "@vue/cli-plugin-unit-jest": "^3.3.0",

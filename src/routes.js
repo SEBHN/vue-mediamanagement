@@ -1,5 +1,6 @@
 import Header from './components/layout/Header';
 import MediaExplorer from './components/media-explorer/MediaExplorer'
+import OktaVuePlugin from '@okta/okta-vue';
 
 export const routes = [
   {
@@ -8,13 +9,13 @@ export const routes = [
       'appHeader': Header,
       'appMediaExplorer': MediaExplorer
     },
-    beforeEnter: (to, from, next) => {
-      if (true) {
-        next();
-      } else {
-        
-      }
-    }
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  { 
+    path: '/implicit/callback', 
+    component: OktaVuePlugin.handleCallback() 
   },
   {
     path: '',
