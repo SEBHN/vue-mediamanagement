@@ -1,12 +1,12 @@
 <template>
 <div id="app">
   <div v-if="authenticated">
-    <router-view name="appHeader"></router-view>
-    <br><br><br>
-    <router-view class="mx-4" name="appMediaExplorer"></router-view>
+    <v-app>
+      <router-view name="appHeader"></router-view>
+      <br><br><br>
+      <router-view class="mx-4" name="appMediaExplorer"></router-view>
+    </v-app>
   </div>
-  <button v-if='authenticated' v-on:click='logout' id='logout-button'> Logout </button>
-  <button v-else v-on:click='$auth.loginRedirect' id='login-button'> Login </button>
   <router-view/>
 </div>
 </template>

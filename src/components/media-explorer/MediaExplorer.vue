@@ -28,7 +28,16 @@ export default {
 
   data: function () {
     return {
-      mediaFiles: []
+      mediaFiles: [],
+      sheet: false,
+      tiles: [
+        { img: 'keep.png', title: 'Keep' },
+        { img: 'inbox.png', title: 'Inbox' },
+        { img: 'hangouts.png', title: 'Hangouts' },
+        { img: 'messenger.png', title: 'Messenger' },
+        { img: 'google.png', title: 'Google+' }
+      ],
+
     }
   },
   components: {

@@ -9,13 +9,30 @@
   </div>
   <!-- Else: media is a file -->
   <div class="text-xs-center" v-else>
-    <v-btn icon class="zoom">
-      <v-icon color="amber darken-1" large>insert_drive_file</v-icon>
-    </v-btn>
+    <v-bottom-sheet v-model="sheet">
+      <v-btn icon class="zoom" slot="activator">
+        <v-icon color="amber darken-1" large>insert_drive_file</v-icon>
+      </v-btn>
+      <v-list>
+        <v-subheader>{{ name }}</v-subheader>
+        <v-list-tile @click="delegate('rename')">
+          <v-list-tile-title>Rename</v-list-tile-title>
+        </v-list-tile>
+        <v-list-tile @click="delegate">
+          <v-list-tile-title>Delete</v-list-tile-title>
+        </v-list-tile>
+        <v-list-tile @click="delegate">
+          <v-list-tile-title>Download</v-list-tile-title>
+        </v-list-tile>
+        <v-list-tile @click="delegate">
+          <v-list-tile-title>Tag</v-list-tile-title>
+        </v-list-tile>
+      </v-list>
+    </v-bottom-sheet>
     <p class="subheading font-weight-light">{{ name }}</p>
   </div>
-  <span v-if="hover">Hovered!</span>
 </div>
+
 </template>
 
 <script>
@@ -23,6 +40,7 @@ export default {
   data: function () {
     return {
       hover: false,
+      sheet: false,
       tag: String
     }
   },
@@ -36,6 +54,10 @@ export default {
       },
       removeTag(tag) {
         throw new Error('Not yet implemented');
+      },
+      delegate() {
+        // check operation here
+        this.sheet = false;
       }
   }
 }
