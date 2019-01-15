@@ -1,7 +1,8 @@
-const axios = require('axios');
+//const axios = require('axios');
 
-/// REST api : 
-//const baseUrl = `https://mvs-18-ws-spring-in-cloud.appspot.com`; => this version of backend needs auth
+/// REST api :
+//const baseUrl = 'https://mvs-18-ws-spring-in-cloud.appspot.com';
+/*
 const baseUrl = 'http://localhost:8080/';
 
 const http = axios.create({
@@ -10,3 +11,4 @@ const http = axios.create({
 });
 
 module.exports = http;
+*/
