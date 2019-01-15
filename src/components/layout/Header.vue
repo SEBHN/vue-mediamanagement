@@ -36,7 +36,8 @@
             class="ma-4"
             label="Enter folder name..."
             hide-details
-            color="black"/>
+            color="black"
+            v-model="folderName"/>
   
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -47,7 +48,7 @@
             <v-btn
               color="success"
               flat
-              @click="dialog=false">Create</v-btn>  
+              @click="createFolder">Create</v-btn>  
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -55,13 +56,15 @@
 </template>
 
 <script>
+  import uuidv4 from 'uuid/v4';
   import { api } from '../../services/api';
   import { eventBus } from '../../event_bus/event_bus';
 
 export default {
   data: function() {
     return {
-      dialog: false
+      dialog: false,
+      folderName: ''
     }
   },
   methods: {
@@ -72,6 +75,20 @@ export default {
     },
     resetPath() {
       eventBus.resetPath();
+    },
+    createFolder() {
+      if (this.folderName) {
+        let folder = {
+          id: uuidv4(),
+          name: this.folderName,
+          isFolder: true,
+          filePath: eventBus.path,
+          tags: [],
+          fileId: ''
+        }
+        eventBus.add(folder);
+      }
+      this.dialog = false;
     }
   }
 }

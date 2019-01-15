@@ -17,8 +17,8 @@ export const eventBus = new Vue({
       mediaService.addMany(files);
       this.emitEvent('mediaAdded');
     },
-    update(id, name) {
-      mediaService.update(id, name);
+    rename(id, name) {
+      mediaService.rename(id, name);
       this.emitEvent('mediaUpdated');
     },
     getAll() {
@@ -40,6 +40,7 @@ export const eventBus = new Vue({
       const split = eventBus.path.split('/');
       split.splice(split.length - 2, 1);
       eventBus.path = split.join('/');
+      console.log('After pop' + eventBus.path);
       this.emitEvent('pathChanged');
     },
     resetPath() {

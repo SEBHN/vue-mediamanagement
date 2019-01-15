@@ -2,7 +2,7 @@
 <div>
   <!-- If media is a folder -->
   <div class="text-xs-center" v-if="isFolder">
-    <v-btn icon class="zoom" @click="navigateToFolder(filePath)">
+    <v-btn icon class="zoom" @click="navigateToFolder(name)">
       <v-icon color="blue darken-2" large>folder</v-icon>
     </v-btn>
     <p class="subheading font-weight-light">{{ name }}</p>
@@ -83,7 +83,7 @@ export default {
       navigateToFolder(folderName) {
         eventBus.canNavigateUp = true;
         // update path variable
-        eventBus.pushToPath(folderName);
+        eventBus.pushToPath(`${folderName}/`);
       }
   }
 }
