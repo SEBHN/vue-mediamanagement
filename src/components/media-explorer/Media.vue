@@ -84,6 +84,11 @@ export default {
         eventBus.canNavigateUp = true;
         // update path variable
         eventBus.pushToPath(folderName);
+      },
+      navigateUp() {
+        if (eventBus.path === '/') {
+          eventBus.canNavigateUp = false;
+        }
       }
   }
 }
