@@ -38,7 +38,6 @@
 <script>
 import { eventBus } from '../../event_bus/event_bus';
 import { api}  from '../../services/api';
-import mediaService from '../../services/mediaService';
 
 export default {
   data: function () {

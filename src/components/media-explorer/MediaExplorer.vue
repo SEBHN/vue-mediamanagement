@@ -49,10 +49,10 @@ export default {
       this.mediaFiles = files;
     });
   },
-  beforeMount() {
-    this.mediaFiles = api.getMediaForPath('999', eventBus.path);
+  async beforeMount() {
+    await api.configureHttp();
+    this.mediaFiles = api.getMediaForPath(eventBus.path);
   }
-
 }
 </script>
 

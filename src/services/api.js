@@ -2,9 +2,7 @@ import Vue from 'vue'
 import {eventBus} from '../event_bus/event_bus';
 
 const axios = require('axios');
-
-//const baseUrl = 'http://localhost:8080';
-
+const API_URL = 'https://mvs-18-ws-spring-in-cloud.appspot.com';
 
 /*eslint no-console: ["error", { allow: ["log"] }] */
 export const api = new Vue({
@@ -23,13 +21,9 @@ export const api = new Vue({
                 }
             });
         },
-        getMediaForPath(userId, path) {
-            //const requestUrl = ` / users / ${userId}/folders/${encodeURIComponent(path)}/media`;
+        getMediaForPath(path) {
             const requestUrl = `/folders/${encodeURIComponent(path)}/media`;
-
-            console.log('Get Media for Path');
-
-            this.http.get('https://mvs-18-ws-spring-in-cloud.appspot.com' + requestUrl).then((res) => {
+            this.http.get(API_URL + requestUrl).then((res) => {
                 // add folders if they exist
                 if (res.data.subfolders) {
                     res.data.subfolders.forEach((folder) => {
@@ -43,36 +37,35 @@ export const api = new Vue({
                     eventBus.add(media);
                 })
             });
-        }
-        ,
-        getAllMediaForUser(userId) {
-            const requestUrl = `/users/${userId}/media/`;
-            this.http.get(requestUrl).then((res) => {
+        },
+        getAllMediaForUser() {
+            const requestUrl = `/media`;
+            this.http.get(API_URL + requestUrl).then((res) => {
                 eventBus.addMany(res.data);
             });
         }
         ,
-        getMediaForId(userId, mediaId) {
-            const requestUrl = `/users/${userId}/media/${mediaId}`;
-            this.http.get(requestUrl).then(res => console.log(res.data));
+        getMediaForId(mediaId) {
+            const requestUrl = `/media/${mediaId}`;
+            this.http.get(API_URL + requestUrl).then(res => console.log(res.data));
         }
         ,
-        uploadMetadata(file, userId) {
+        uploadMetadata(file) {
             let obj = {};
             obj.name = file.name;
             obj.fileExtension = this.getExtension(file);
             obj.filePath = eventBus.path;
-            const requestUrl = `/users/${userId}/media/`;
-            this.http.post(requestUrl, JSON.stringify(obj)).then(res => {
-                this.postMedia(userId, res.data.id, file)
+            const requestUrl = `/media`;
+            this.http.post(API_URL + requestUrl, JSON.stringify(obj)).then(res => {
+                this.postMedia(res.data.id, file)
             });
         }
         ,
-        postMedia(userId, mediaId, file) {
+        postMedia(mediaId, file) {
             const formData = new FormData();
             formData.append("file", file);
-            const requestUrl = `/users/${userId}/media/${mediaId}/upload`;
-            this.http.post(requestUrl, formData).then(res => {
+            const requestUrl = `/media/${mediaId}/upload`;
+            this.http.post(API_URL + requestUrl, formData).then(res => {
                 res.data.isFolder = false;
                 eventBus.add(res.data);
             });
@@ -91,9 +84,9 @@ export const api = new Vue({
             }
         }
         ,
-        deleteMedia(userId, mediaId) {
-            const requestUrl = `/users/${userId}/media/${mediaId}`;
-            this.http.delete(requestUrl).then(res => console.log(res.status));
+        deleteMedia(mediaId) {
+            const requestUrl = `/media/${mediaId}`;
+            this.http.delete(API_URL + requestUrl).then(res => console.log(res.status));
         }
     }
 })

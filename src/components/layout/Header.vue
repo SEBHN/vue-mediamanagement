@@ -18,9 +18,9 @@
           <v-icon>create_new_folder</v-icon>
         </v-btn>
         <!-- Upload button -->
-        <v-btn flat class="mx-4">
+        <v-btn flat class="mx-4" @click="uploadFile($event)">
           <v-icon class="mr-2">cloud_upload</v-icon>
-          <input id="file" style="display: none" type="file" @change="uploadFile($event)">
+          <input id="file" style="display: none" type="file">
           <label for="file">Upload</label>
         </v-btn>
         <v-btn flat class="mx-4">Sign Out</v-btn>
@@ -71,7 +71,7 @@ export default {
     uploadFile(event){
       let file = event.target.files[0];
       event.target.value = '';
-      api.uploadMetadata(file, '999');
+      api.uploadMetadata(file);
     },
     resetPath() {
       eventBus.resetPath();
