@@ -46,7 +46,6 @@ export default {
       this.mediaFiles = files;
     });
     eventBus.$on('pathChanged', (files) => {
-      console.log('Current path: ' + eventBus.path);
       this.mediaFiles = files;
     });
   },

@@ -1,6 +1,15 @@
 import uuidv4 from 'uuid/v4';
-import mediaDao from '../dao/mediaDao';
 
+/**
+ * Map containing all media files fetched from Backend
+ * key -> media id
+ * value -> media object
+ */
+const mediaDao = new Map();
+
+/**
+ * Service implementing CRUD operations on the mediaDao map.
+ */
 const mediaService = {
   addOne: function(media) {
     // incoming folder
@@ -11,11 +20,11 @@ const mediaService = {
         // folder doesn't exist in memory
         media.id = uuidv4(); // generate random uuid
         media.isFolder = true;
-        mediaDao.push(media);
+        mediaDao.set(media.id, media);
       } // if folder is in memory - do nothing
     } else {
       // handle media files
-      mediaDao.push(media);
+      mediaDao.set(media.id, media);
     }
 
   },
@@ -32,25 +41,16 @@ const mediaService = {
     this.getMediaForId(id).name = name;
   },
   getAll: function() {
-    return mediaDao;
+    return Array.from(mediaDao.values()).slice()
   },
   getAllForPath(path) {
-    return mediaDao.filter(media => media.filePath === path);
+    return this.getAll().filter(media => media.filePath === path);
   },
   getMediaForId(id) {
-    return mediaDao.find(media => media.id === id);
+    return mediaDao.get(id);
   },
   remove: function(id) {
-    const media = mediaDao.find(media => media.id === id);
-    const index = mediaDao.indexOf(media);
-    if (index > -1) {
-      mediaDao.splice(index, 1);
-    } else {
-      throw new Error(`Media with id ${id} doesn't exist in mediaDao.`);
-    }
-  },
-  removeAll() {
-    mediaDao.slice(0, mediaDao.length);
+    mediaDao.delete(id);
   }
 }
 

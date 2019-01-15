@@ -37,6 +37,8 @@
 
 <script>
 import { eventBus } from '../../event_bus/event_bus';
+import { api}  from '../../services/api';
+import mediaService from '../../services/mediaService';
 
 export default {
   data: function () {
@@ -84,6 +86,7 @@ export default {
         eventBus.canNavigateUp = true;
         // update path variable
         eventBus.pushToPath(`${folderName}/`);
+        api.getMediaForPath('999', eventBus.path);
       }
   }
 }

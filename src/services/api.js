@@ -50,6 +50,7 @@ export const api = new Vue({
       const requestUrl = `/users/${userId}/media/${mediaId}/upload`;
       http.post(requestUrl, formData).then(res => {
         res.data.isFolder = false;
+        console.log('Uploaded file: ' + res.data.name);
         eventBus.add(res.data);
       });
     },

@@ -40,7 +40,6 @@ export const eventBus = new Vue({
       const split = eventBus.path.split('/');
       split.splice(split.length - 2, 1);
       eventBus.path = split.join('/');
-      console.log('After pop' + eventBus.path);
       this.emitEvent('pathChanged');
     },
     resetPath() {
