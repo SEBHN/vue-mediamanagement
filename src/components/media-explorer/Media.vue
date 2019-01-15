@@ -80,17 +80,10 @@ export default {
         }
         this.sheet = false;
       },
-      navigateToFolder(event) {
-        console.log(eventBus);
-      },
-      // Path handling
-      pushToPath(element) {
-        eventBus.path += `${element.name}/`;
-      },
-      popFromPath() {
-        const split = eventBus.path.split('/');
-        split.splice(split.length - 2, 1);
-        eventBus.path = split.join('/');
+      navigateToFolder(folderName) {
+        eventBus.canNavigateUp = true;
+        // update path variable
+        eventBus.pushToPath(folderName);
       }
   }
 }

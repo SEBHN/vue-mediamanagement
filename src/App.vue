@@ -5,6 +5,7 @@
       <router-view name="appHeader"></router-view>
       <br><br><br>
       <router-view class="mx-4" name="appMediaExplorer"></router-view>
+      <router-view name="appFooter"></router-view>
     </v-app>
   </div>
   <router-view/>

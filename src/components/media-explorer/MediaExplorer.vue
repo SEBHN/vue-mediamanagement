@@ -45,6 +45,9 @@ export default {
     eventBus.$on('mediaAdded', (files) => {
       this.mediaFiles = files;
     });
+    eventBus.$on('pathChanged', (files) => {
+      this.mediaFiles = files;
+    });
   },
   beforeMount() {
     this.mediaFiles = api.getMediaForPath('999', eventBus.path);

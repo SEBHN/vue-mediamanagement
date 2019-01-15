@@ -31,6 +31,21 @@ export const eventBus = new Vue({
       mediaService.remove(id);
       this.emitEvent('mediaRemoved');
     },
+    // Path handling
+    pushToPath(path) {
+      this.path += path;
+      this.emitEvent('pathChanged');
+    },
+    popFromPath() {
+      const split = eventBus.path.split('/');
+      split.splice(split.length - 2, 1);
+      eventBus.path = split.join('/');
+      this.emitEvent('pathChanged');
+    },
+    resetPath() {
+      this.path = '/';
+      this.emitEvent('pathChanged');
+    },
     // event to emit
     emitEvent(event) {
       this.$emit(event, mediaService.getAllForPath(this.path));

@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-toolbar absolute scroll-off-screen color="amber accent-4">
-      <v-btn icon>
+      <v-btn icon @click="resetPath">
         <v-icon>home</v-icon>
       </v-btn>
 
@@ -56,6 +56,7 @@
 
 <script>
   import { api } from '../../services/api';
+  import { eventBus } from '../../event_bus/event_bus';
 
 export default {
   data: function() {
@@ -68,6 +69,9 @@ export default {
       let file = event.target.files[0];
       event.target.value = '';
       api.uploadMetadata(file, '999');
+    },
+    resetPath() {
+      eventBus.resetPath();
     }
   }
 }
