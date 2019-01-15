@@ -18,7 +18,15 @@ data: function () {
 },
 methods: {
   goBack() {
-    eventBus.popFromPath();
+    if (eventBus.canNavigateUp) {
+      if (eventBus.path === '/') {
+        eventBus.canNavigateUp = false;
+      } else {
+        eventBus.popFromPath();
+      }
+    } else {
+      // already in '/'
+    }
   }
 }
 }
