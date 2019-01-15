@@ -2,7 +2,7 @@
 <div>
   <!-- If media is a folder -->
   <div class="text-xs-center" v-if="isFolder">
-    <v-btn icon class="zoom">
+    <v-btn icon class="zoom" @click="navigateToFolder(filePath)">
       <v-icon color="blue darken-2" large>folder</v-icon>
     </v-btn>
     <p class="subheading font-weight-light">{{ name }}</p>
@@ -18,13 +18,13 @@
         <v-list-tile @click="delegate('rename')">
           <v-list-tile-title>Rename</v-list-tile-title>
         </v-list-tile>
-        <v-list-tile @click="delegate">
+        <v-list-tile @click="delegate('delete')">
           <v-list-tile-title>Delete</v-list-tile-title>
         </v-list-tile>
-        <v-list-tile @click="delegate">
+        <v-list-tile @click="delegate('download')">
           <v-list-tile-title>Download</v-list-tile-title>
         </v-list-tile>
-        <v-list-tile @click="delegate">
+        <v-list-tile @click="delegate('tag')">
           <v-list-tile-title>Tag</v-list-tile-title>
         </v-list-tile>
       </v-list>
@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import { eventBus } from '../../event_bus/event_bus';
+
 export default {
   data: function () {
     return {
@@ -45,6 +47,8 @@ export default {
     }
   },
   props: {
+    id: String,
+    filePath: String,
     name: String,
     isFolder: Boolean
   },
@@ -55,9 +59,38 @@ export default {
       removeTag(tag) {
         throw new Error('Not yet implemented');
       },
-      delegate() {
+      delegate(arg) {
         // check operation here
+        switch(arg) {
+          case 'rename': // code here
+                
+                break;
+
+          case 'delete':
+                
+                break;
+
+          case 'download':
+                
+                break;
+
+          case 'tag':
+                
+                break;
+        }
         this.sheet = false;
+      },
+      navigateToFolder(event) {
+        console.log(eventBus);
+      },
+      // Path handling
+      pushToPath(element) {
+        eventBus.path += `${element.name}/`;
+      },
+      popFromPath() {
+        const split = eventBus.path.split('/');
+        split.splice(split.length - 2, 1);
+        eventBus.path = split.join('/');
       }
   }
 }

@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     uploadFile(event){
-      var file = event.target.files[0];
+      let file = event.target.files[0];
       event.target.value = '';
       api.uploadMetadata(file, '999');
     }

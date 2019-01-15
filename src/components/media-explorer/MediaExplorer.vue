@@ -5,6 +5,8 @@
         <v-flex v-for="file in mediaFiles" :key="file.id" md3 xs12 class="my-4">
           <app-media
               :name="file.name"
+              :id="file.id"
+              :filePath="file.filePath"
               :isFolder="file.isFolder"
           ></app-media>
         </v-flex>
@@ -29,15 +31,7 @@ export default {
   data: function () {
     return {
       mediaFiles: [],
-      sheet: false,
-      tiles: [
-        { img: 'keep.png', title: 'Keep' },
-        { img: 'inbox.png', title: 'Inbox' },
-        { img: 'hangouts.png', title: 'Hangouts' },
-        { img: 'messenger.png', title: 'Messenger' },
-        { img: 'google.png', title: 'Google+' }
-      ],
-
+      sheet: false
     }
   },
   components: {

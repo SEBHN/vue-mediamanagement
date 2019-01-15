@@ -5,7 +5,8 @@ export const eventBus = new Vue({
   data: {
     // shared data here
     mediaService,
-    path: '/'
+    path: '/',
+    canNavigateUp: false
   },
   methods: {
     add(media) {
