@@ -8,12 +8,13 @@ import 'vuetify/dist/vuetify.min.css'
 import { routes } from './routes'
 
 
-const productionSuffix = process.env.NODE_ENV === 'production' ? '/mvsvue/#': '/'
+const productionSuffix = process.env.NODE_ENV === 'production' ? '/mvsvue/': '/'
+const productionSuffixSuffix = process.env.NODE_ENV === 'production' ? 'implicit/callback#': 'implicit/callback'
 Vue.use(VueRouter);
 Vue.use(OktaVuePlugin, {
   issuer: 'https://dev-332680.oktapreview.com/oauth2/default',
   client_id: '0oahyyghlrI8poUre0h7',
-  redirect_uri: window.location.origin + productionSuffix + 'implicit/callback',
+  redirect_uri: window.location.origin + productionSuffix + productionSuffixSuffix,
   scope: 'openid profile email',
 });
 
