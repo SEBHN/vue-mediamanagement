@@ -85,7 +85,7 @@ export default {
         eventBus.canNavigateUp = true;
         // update path variable
         eventBus.pushToPath(`${folderName}/`);
-        api.getMediaForPath('999', eventBus.path);
+        api.getMediaForPath(eventBus.path);
       }
   }
 }
