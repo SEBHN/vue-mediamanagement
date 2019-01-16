@@ -6,17 +6,15 @@ let testFolder;
 let currentPath;
 
 beforeAll(() => {
-  mediaService.removeAll();
   currentPath = '/';
   testMedia = {id: '787793fa', name: 'rocket', isFolder: false, filePath: '/', tags: [], fileId: '123i', fileExtension: 'jpeg'};
   testMedia1 = {id: 'kh123sga', name: 'newHope', isFolder: false, filePath: '/star wars', tags: ['geek'], fileId: 'sml20', fileExtension: 'avi'};
   testFolder = {id: 'juh92pxa', name: 'THI', isFolder: true, filePath: '/', tags: [], fileId: 'tell'};
 });
 
-afterEach(() => {
+afterEach(()=> {
   mediaService.removeAll();
-})
-
+});
 /**
  * @param {string} id of the media to be removed
  */
