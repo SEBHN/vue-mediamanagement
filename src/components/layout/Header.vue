@@ -63,8 +63,8 @@
 export default {
   data: function() {
     return {
-      dialog: false,
-      folderName: ''
+        dialog: false,
+        folderName: ''
     }
   },
   methods: {

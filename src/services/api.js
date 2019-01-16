@@ -84,6 +84,14 @@ export const api = new Vue({
                     FileDownload(response.data, fileName);
                 })
         },
+        updateMedia(media)  {
+            const requestUrl = `/media/${media.id}`;
+            media.fileExtension = this.getExtension(media);
+            console.log(JSON.stringify(media));
+            this.http.put(API_URL  + requestUrl, JSON.stringify(media)).then(res => {
+                eventBus.rename(media.id, media.name);
+            });
+        },
         getExtension(file) {
             const fileName = file.name;
             const countDots = fileName.replace(/[^.]/g, "").length;
