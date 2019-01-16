@@ -18,9 +18,9 @@
           <v-icon>create_new_folder</v-icon>
         </v-btn>
         <!-- Upload button -->
-        <v-btn flat class="mx-4" @click="uploadFile($event)">
+        <v-btn flat class="mx-4">
           <v-icon class="mr-2">cloud_upload</v-icon>
-          <input id="file" style="display: none" type="file">
+          <input id="file" style="display: none" type="file" @change="uploadFile($event)">
           <label for="file">Upload</label>
         </v-btn>
         <v-btn flat class="mx-4">Sign Out</v-btn>
