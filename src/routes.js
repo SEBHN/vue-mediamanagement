@@ -17,10 +17,7 @@ export const routes = [
   },
   { 
     path: '/implicit/callback', 
-    components: {
-      "vueCallBack": OktaVuePlugin.handleCallback(),
-      'appHeader': Header
-    }
+    component: OktaVuePlugin.handleCallback(),
   },
   {
     path: '',

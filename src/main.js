@@ -8,7 +8,7 @@ import 'vuetify/dist/vuetify.min.css'
 import { routes } from './routes'
 
 
-const productionSuffix = process.env.NODE_ENV === 'production' ? '/mvsvue/': ''
+const productionSuffix = process.env.NODE_ENV === 'production' ? '/mvsvue/': '/'
 Vue.use(VueRouter);
 Vue.use(OktaVuePlugin, {
   issuer: 'https://dev-332680.oktapreview.com/oauth2/default',
