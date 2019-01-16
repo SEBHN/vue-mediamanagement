@@ -73,6 +73,17 @@ export const api = new Vue({
                 eventBus.remove(mediaId);
             });
         },
+        downloadMedia(fileName, mediaId){
+            const requestUrl = `/media/${mediaId}/download`;
+
+            this.http.get(API_URL + requestUrl, {
+                responseType: "blob"
+            })
+                .then(response => {
+                    const FileDownload = require("js-file-download");
+                    FileDownload(response.data, fileName);
+                })
+        },
         getExtension(file) {
             const fileName = file.name;
             const countDots = fileName.replace(/[^.]/g, "").length;

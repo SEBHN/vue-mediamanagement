@@ -72,7 +72,7 @@ export default {
                 break;
 
           case 'download':
-                
+                api.downloadMedia(this.name, this.id);
                 break;
 
           case 'tag':
