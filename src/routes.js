@@ -18,9 +18,5 @@ export const routes = [
   { 
     path: '/implicit/callback', 
     component: OktaVuePlugin.handleCallback(),
-  },
-  {
-    path: '',
-    redirect: '/home'
   }
 ];
