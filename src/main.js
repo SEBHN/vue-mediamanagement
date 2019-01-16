@@ -21,7 +21,7 @@ Vue.use(OktaVuePlugin, {
 const router = new VueRouter({
   routes, // pass in our imported routes array
   base: process.env.BASE_URL,
-  mode: 'history' // remove '/#' (hash mode)npm
+  mode: 'hash' // remove '/#' (hash mode)npm
 });
 
 router.beforeEach(Vue.prototype.$auth.authRedirectGuard());
