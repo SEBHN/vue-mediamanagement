@@ -43,13 +43,11 @@ export const api = new Vue({
             this.http.get(API_URL + requestUrl).then((res) => {
                 eventBus.addMany(res.data);
             });
-        }
-        ,
+        },
         getMediaForId(mediaId) {
             const requestUrl = `/media/${mediaId}`;
             this.http.get(API_URL + requestUrl).then(res => console.log(res.data));
-        }
-        ,
+        },
         uploadMetadata(file) {
             let obj = {};
             obj.name = file.name;
@@ -59,8 +57,7 @@ export const api = new Vue({
             this.http.post(API_URL + requestUrl, JSON.stringify(obj)).then(res => {
                 this.postMedia(res.data.id, file)
             });
-        }
-        ,
+        },
         postMedia(mediaId, file) {
             const formData = new FormData();
             formData.append("file", file);
@@ -69,8 +66,13 @@ export const api = new Vue({
                 res.data.isFolder = false;
                 eventBus.add(res.data);
             });
-        }
-        ,
+        },
+        deleteMedia(mediaId) {
+            const requestUrl = `/media/${mediaId}`;
+            this.http.delete(API_URL + requestUrl).then(res => {
+                eventBus.remove(mediaId);
+            });
+        },
         getExtension(file) {
             const fileName = file.name;
             const countDots = fileName.replace(/[^.]/g, "").length;
@@ -82,11 +84,6 @@ export const api = new Vue({
                 const file_name_array = fileName.split(".");
                 return "." + file_name_array[file_name_array.length - 1];
             }
-        }
-        ,
-        deleteMedia(mediaId) {
-            const requestUrl = `/media/${mediaId}`;
-            this.http.delete(API_URL + requestUrl).then(res => console.log(res.status));
         }
     }
 })

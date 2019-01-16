@@ -48,10 +48,14 @@ export default {
     eventBus.$on('pathChanged', (files) => {
       this.mediaFiles = files;
     });
+      eventBus.$on('mediaRemoved', (files) => {
+          this.mediaFiles = files;
+      });
   },
   async beforeMount() {
     await api.configureHttp();
     this.mediaFiles = api.getMediaForPath(eventBus.path);
+      console.log("HALLO");
   }
 }
 </script>

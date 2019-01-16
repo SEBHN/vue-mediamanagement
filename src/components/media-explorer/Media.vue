@@ -64,11 +64,11 @@ export default {
         // check operation here
         switch(arg) {
           case 'rename': // code here
-                
+
                 break;
 
           case 'delete':
-                
+              api.deleteMedia(this.id);
                 break;
 
           case 'download':
@@ -76,7 +76,7 @@ export default {
                 break;
 
           case 'tag':
-                
+
                 break;
         }
         this.sheet = false;
