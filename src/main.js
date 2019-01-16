@@ -8,13 +8,13 @@ import 'vuetify/dist/vuetify.min.css'
 import { routes } from './routes'
 
 
-const productionSuffix = process.env.NODE_ENV === 'production' ? '/mvsvue/': '/'
-const productionSuffixSuffix = process.env.NODE_ENV === 'production' ? 'implicit/callback': 'implicit/callback'
+const production = process.env.NODE_ENV === 'production' ? 'https://sebhn.github.io/mvsvue/': 'http://localhost:8080/'
+const mode =  process.env.NODE_ENV === 'production' ? 'hash': 'history'
 Vue.use(VueRouter);
 Vue.use(OktaVuePlugin, {
   issuer: 'https://dev-332680.oktapreview.com/oauth2/default',
   client_id: '0oahyyghlrI8poUre0h7',
-  redirect_uri: window.location.origin + productionSuffix + productionSuffixSuffix,
+  redirect_uri: production + 'implicit/callback',
   scope: 'openid profile email',
 });
 
@@ -22,7 +22,7 @@ Vue.use(OktaVuePlugin, {
 const router = new VueRouter({
   routes, // pass in our imported routes array
   base: process.env.BASE_URL,
-  mode: 'hash' // remove '/#' (hash mode)npm
+  mode: mode // remove '/#' (hash mode)npm
 });
 
 router.beforeEach(Vue.prototype.$auth.authRedirectGuard());
