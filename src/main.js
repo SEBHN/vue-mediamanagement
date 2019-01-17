@@ -9,7 +9,7 @@ import { routes } from './routes'
 
 
 const production = process.env.NODE_ENV === 'production' ? 'https://sebhn.github.io/mvsvue/': 'http://localhost:8080/'
-const mode =  process.env.NODE_ENV === 'production' ? 'hash': 'history'
+const mode =  process.env.NODE_ENV === 'production' ? 'history': 'history'
 Vue.use(VueRouter);
 Vue.use(OktaVuePlugin, {
   issuer: 'https://dev-332680.oktapreview.com/oauth2/default',
