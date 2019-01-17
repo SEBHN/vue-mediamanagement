@@ -52,7 +52,7 @@
                     <v-btn
                             color="success"
                             flat
-                            @click="renameMedia">Create
+                            @click="renameMedia">Rename
                     </v-btn>
                 </v-card-actions>
             </v-card>
@@ -78,6 +78,7 @@
         props: {
             id: String,
             filePath: String,
+            fileId: String,
             name: String,
             isFolder: Boolean
         },
@@ -120,6 +121,7 @@
                 obj.id = this.id;
                 obj.name = this.renamedName;
                 obj.filePath = this.filePath;
+                obj.fileId = this.fileId;
                 api.updateMedia(obj);
 
             }

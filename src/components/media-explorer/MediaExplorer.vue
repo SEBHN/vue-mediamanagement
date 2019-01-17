@@ -7,6 +7,7 @@
               :name="file.name"
               :id="file.id"
               :filePath="file.filePath"
+              :fileId="file.fileId"
               :isFolder="file.isFolder"
           ></app-media>
         </v-flex>
